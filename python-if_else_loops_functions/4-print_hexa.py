@@ -2,4 +2,4 @@
 # Prints numbers from 0 to 98 in decimal and hexadecimal
 
 for i in range(0, 99):
-    print("{} = {}".format(i, hex(i)), end="\n" if i == 98 else ", ")
+    print("{} = {}".format(i, hex(i)))

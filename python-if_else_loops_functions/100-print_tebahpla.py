@@ -1,6 +1,3 @@
 #!/usr/bin/python3
-print("".join(
-        chr(i) if i % 2 == 0 else chr(i - 32)
-        for i in range(122, 96, -1)
-     ), end="")
-
+for i in range(26):
+    print("{:c}".format((122 - i) if i % 2 == 0 else (122 - i) - 32), end="")

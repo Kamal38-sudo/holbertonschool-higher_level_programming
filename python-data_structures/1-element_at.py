@@ -1,5 +1,9 @@
 #!/usr/bin/python3
 def element_at(my_list, idx):
-    for idx in my_list:
-        if idx < 0 and idx> len(my_list):
-            print(None) 
+    """Retrieve an element from a list at a specific index.
+    
+    Returns None if idx is negative or out of range.
+    """
+    if idx < 0 or idx >= len(my_list):
+        return None
+    return my_list[idx]

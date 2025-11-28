@@ -1,5 +1,13 @@
 #!/usr/bin/python3
-"""Module that defines a Rectangle class inheriting from BaseGeometry."""
+"""
+Module 9-rectangle
+Defines a Rectangle class that inherits from BaseGeometry.
+
+The Rectangle class includes:
+- private width and height validated as positive integers
+- area() method
+- __str__ method returning [Rectangle] <width>/<height>
+"""
 
 BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
@@ -21,3 +29,4 @@ class Rectangle(BaseGeometry):
     def __str__(self):
         """Return the string representation of the rectangle."""
         return "[Rectangle] {}/{}".format(self.__width, self.__height)
+

@@ -1,2 +1,3 @@
-#This is veryn beautiful
-show Databases;
+-- List all databases in MySQL server
+SHOW DATABASES;
+

@@ -19,5 +19,6 @@ class Square(Rectangle):
         """Initialize Square with private size."""
         self.integer_validator("size", size)
         self.__size = size
-        # Call the Rectangle constructor with width and height equal to size
+        # Call Rectangle constructor with width and height equal to size
         super().__init__(size, size)
+

@@ -1,2 +1,2 @@
 -- salam
-SELECT * FROM cities where state_id (SELECT * FROM states where name="California") ORDER BY id ASC;
+SELECT * FROM cities WHERE state_id (SELECT * FROM states WHERE name="California") ORDER BY id ASC;

@@ -1,11 +1,5 @@
 -- salam
-SELECT *
+SELECT cities.id, cities.name, cities.state_id
 FROM cities
-WHERE state_id = (
-    SELECT id
-    FROM states
-    WHERE name = 'California'
-    LIMIT 1
-)
-ORDER BY id ASC;
-
+WHERE cities.state_id = (SELECT id FROM states WHERE name = 'California')
+ORDER BY cities.id ASC;

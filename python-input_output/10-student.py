@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Student class module
+"""Student class module.
 """
 
 
@@ -25,10 +25,9 @@ class Student:
         """
         if attrs is None:
             return self.__dict__.copy()
-        else:
-            new_dict = {}
-            for key in attrs:
-                if key in self.__dict__:
-                    new_dict[key] = self.__dict__[key]
-            return new_dict
+        new_dict = {}
+        for key in attrs:
+            if key in self.__dict__:
+                new_dict[key] = self.__dict__[key]
+        return new_dict
 

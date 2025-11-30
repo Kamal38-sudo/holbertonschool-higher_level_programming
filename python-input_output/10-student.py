@@ -1,13 +1,18 @@
 #!/usr/bin/python3
-"""Student class module.
+"""
+This module defines a class Student based on 9-student.py.
 """
 
 
 class Student:
-    """Defines a student by first_name, last_name, and age."""
+    """
+    Defines a student by first_name, last_name and age.
+    """
 
     def __init__(self, first_name, last_name, age):
-        """Initialize a new Student instance."""
+        """
+        Initializes a Student instance.
+        """
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
@@ -15,19 +20,13 @@ class Student:
     def to_json(self, attrs=None):
         """
         Retrieves a dictionary representation of a Student instance.
-
-        Args:
-            attrs (list, optional): List of attribute names to retrieve.
-                                    If None, all attributes are retrieved.
-
-        Returns:
-            dict: Dictionary representation of the student.
+        If attrs is a  strings, only attributes in that list are retrieved.
         """
-        if attrs is None:
-            return self.__dict__.copy()
-        new_dict = {}
-        for key in attrs:
-            if key in self.__dict__:
-                new_dict[key] = self.__dict__[key]
-        return new_dict
-
+        if (isinstance(attrs, list) and
+                all(isinstance(x, str) for x in attrs)):
+            filtered_dict = {}
+            for key in attrs:
+                if key in self.__dict__:
+                    filtered_dict[key] = self.__dict__[key]
+            return filtered_dict
+        return self.__dict__

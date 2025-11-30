@@ -1,57 +1,55 @@
+#!/usr/bin/python3
+"""
+This module provides functions to serialize and deserialize a Python dictionary
+using XML format.
+"""
 import xml.etree.ElementTree as ET
+
 
 def serialize_to_xml(dictionary, filename):
     """
     Serializes a Python dictionary to an XML file.
+    Args:
+        dictionary (dict): The dictionary to serialize.
+        filename (str): The filename for the output XML file.
     """
-    root = ET.Element("data")  # XML root element
+    # 1. Kök elementini (Root) yaradırıq: <data>
+    root = ET.Element("data")
 
+    # 2. Lüğətdəki hər bir elementi XML uşağı (child) kimi əlavə edirik
     for key, value in dictionary.items():
-        item = ET.SubElement(root, key)
-        item.text = str(value)  # XML only stores strings
+        # Uşaq element yaradılır: <key>
+        child = ET.SubElement(root, key)
+        # Elementin mətni təyin edilir: <key>value</key>
+        child.text = str(value)
 
-    # Create XML tree and write to file
+    # 3. XML ağacını yaradırıq və fayla yazırıq
     tree = ET.ElementTree(root)
     tree.write(filename, encoding="utf-8", xml_declaration=True)
 
 
 def deserialize_from_xml(filename):
     """
-    Deserializes an XML file back into a Python dictionary.
+    Deserializes an XML file to a Python dictionary.
+    Args:
+        filename (str): The filename of the input XML file.
+    Returns:
+        dict: A dictionary constructed from the XML data.
     """
-    tree = ET.parse(filename)
-    root = tree.getroot()
+    try:
+        # 1. XML faylını oxuyuruq (parse edirik)
+        tree = ET.parse(filename)
+        root = tree.getroot()
 
-    result = {}
+        # 2. Məlumatları yığmaq üçün boş lüğət yaradırıq
+        result_dict = {}
 
-    for elem in root:
-        value = elem.text
+        # 3. Kökün içindəki bütün uşaqları (children) gəzirik
+        for child in root:
+            # child.tag -> açar (məsələn: 'name')
+            # child.text -> dəyər (məsələn: 'John')
+            result_dict[child.tag] = child.text
 
-        # Try converting back to int or float if possible
-        if value.isdigit():
-            value = int(value)
-        else:
-            try:
-                value = float(value)
-            except (ValueError, TypeError):
-                pass  # keep as string if not number
-
-        result[elem.tag] = value
-
-    return result
-
-
-# Test the functions (optional)
-if __name__ == "__main__":
-    sample_dict = {
-        "name": "Alice",
-        "age": 25,
-        "height": 1.68,
-        "city": "Paris"
-    }
-
-    serialize_to_xml(sample_dict, "data.xml")
-    restored = deserialize_from_xml("data.xml")
-
-    print("Deserialized dictionary:", restored)
-
+        return result_dict
+    except FileNotFoundError:
+        return None

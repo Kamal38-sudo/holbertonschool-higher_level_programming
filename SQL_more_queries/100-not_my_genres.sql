@@ -1,4 +1,4 @@
-//  salam
+-- Script to list all genres not linked to the show Dexter
 
 SELECT name
 FROM tv_genres
@@ -12,3 +12,4 @@ WHERE id NOT IN (
     )
 )
 ORDER BY name;
+

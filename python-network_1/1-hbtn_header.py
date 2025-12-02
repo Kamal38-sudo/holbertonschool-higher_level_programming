@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""This task is urllib."""
+
 import sys
 import urllib.request
 

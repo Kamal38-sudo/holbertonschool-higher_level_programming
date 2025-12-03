@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 
 """salam"""
-
-
 import sys
 from urllib import request, error
 

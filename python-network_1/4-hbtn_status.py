@@ -4,4 +4,5 @@ import requests
 
 url = "https://intranet.hbtn.io/status"
 response = requests.get(url)
-print(response)
+body = response.txt
+print(body)

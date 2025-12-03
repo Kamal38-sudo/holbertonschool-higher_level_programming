@@ -10,3 +10,5 @@ if __name__ == "__main__":
     status = response.status_code
     if status >= 4000:
         print("Error code:", status)
+    else:
+        return status

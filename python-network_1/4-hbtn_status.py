@@ -4,7 +4,8 @@
 
 import requests
 
-url = "https://intranet.hbtn.io/status"
-response = requests.get(url)
-body = response.text
-print(body)
+if __name__ == "__main__":
+    url = "https://intranet.hbtn.io/status"
+    response = requests.get(url)
+    body = response.text
+    print(body)

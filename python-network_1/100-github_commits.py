@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Lists 10 most recent commits of a GitHub repository"""
 import requests
 import sys
 
@@ -15,5 +16,3 @@ if __name__ == "__main__":
             sha = commit.get('sha')
             author_name = commit.get('commit').get('author').get('name')
             print(f"{sha}: {author_name}")
-    else:
-        print(f"Error: Unable to fetch commits, status code {response.status_code}")

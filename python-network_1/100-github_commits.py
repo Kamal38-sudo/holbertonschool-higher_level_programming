@@ -1,23 +1,19 @@
 #!/usr/bin/python3
-import sys
 import requests
+import sys
 
-def main():
+if __name__ == "__main__":
     repo_name = sys.argv[1]
     owner_name = sys.argv[2]
 
-    # GitHub API URL to get commits
     url = f"https://api.github.com/repos/{owner_name}/{repo_name}/commits"
-
-    # Get commits from the API (only first 10)
     response = requests.get(url, params={'per_page': 10})
-    commits = response.json()
 
-    for commit in commits:
-        sha = commit.get('sha')
-        # Try to get author name; fallback to commit author name
-        author = commit.get('commit').get('author').get('name')
-        print(f"{sha}: {author}")
-
-if __name__ == "__main__":
-    main()
+    if response.status_code == 200:
+        commits = response.json()
+        for commit in commits:
+            sha = commit.get('sha')
+            author_name = commit.get('commit').get('author').get('name')
+            print(f"{sha}: {author_name}")
+    else:
+        print(f"Error: Unable to fetch commits, status code {response.status_code}")

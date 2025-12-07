@@ -8,7 +8,7 @@ def main():
 
     # GitHub API URL to get commits
     url = f"https://api.github.com/repos/{owner_name}/{repo_name}/commits"
-    
+
     # Get commits from the API (only first 10)
     response = requests.get(url, params={'per_page': 10})
     commits = response.json()
